@@ -63,7 +63,7 @@ FEATURE FILES:
 train/X_train.txt, 
 test/X_test.txt
 
-#LOAD THE DATA TO START THE ANALYSIS
+#Load the data first to start the analysis
 To load the data to start the analysis and before we comabine and merge the original data files, we can use the Read.Table() function in R.
 
 Read the activity files
@@ -80,4 +80,34 @@ Read the subject files
 
 datasetSubjectTrain <- read.table(file.path(path_dataset, "train", "subject_train.txt"),header = FALSE), 
 datasetSubjectTest  <- read.table(file.path(path_dataset, "test" , "subject_test.txt"),header = FALSE)
+
+#Explore the data we just loaded
+Now lets take a look at the data we loaded in order to identify the variables and structure of the dataset.
+
+Use head() to get a quick view of the data
+head(datasetActivityTest)
+
+head(datasetSubjectTrain)
+
+head(datasetFeaturesTest)
+
+head(datasetFeaturesTrain)
+
+head(datasetSubjectTest)
+
+head(datasetSubjectTrain)
+
+
+Use str() to explore the internal structure of the R objects we just readed
+str(datasetActivityTest)
+
+str(datasetActivityTrain)
+
+str(datasetFeaturesTest)
+
+str(datasetFeaturesTrain)
+
+str(datasetSubjectTest)
+
+str(datasetSubjectTrain)
 
