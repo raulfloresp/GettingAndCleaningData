@@ -231,3 +231,88 @@ dataCombine <- cbind(datasetSubject, datasetActivity)
 
 DataFrame <- cbind(datasetFeatures, dataCombine)
 
+#2. EXTRACTS ONLY THE MEASUREMENTS ON THE MEAN AND STANDARD DEVIATION FOR EACH MEASUREMENT.
+
+###2.1 Subset Name of Features by measurements on the mean "mean()" and standard "std()" deviation
+
+subdataFeaturesNames<-dataFeaturesNames$V2[grep("mean\\(\\)|std\\(\\)", dataFeaturesNames$V2)]
+
+###2.2 Subset the data frame by seleted names of Features
+
+selectedDataNames <- c(as.character(subdataFeaturesNames), "subject", "activity" )
+
+DataFrame <- subset(DataFrame, select=selectedDataNames)
+
+###2.3 Check the structure of the DataFrame by using the srt() function
+
+str(DataFrame)
+
+
+#3. USES DESCRIPTIVE ACTIVITY NAMES TO NAME THE ACTIVITIES IN THE DATA SET
+
+###3.1 Enter name of activity into DataFrame
+
+activityLabels <- read.table(file.path(path_dataset, "activity_labels.txt"),header = FALSE)
+
+###3.2 Verify the existent names
+
+head(str(DataFrame),2)
+
+#4. APPROPRIATELY LABELS THE DATA SET WITH DESCRIPTIVE VARIABLE NAMES.
+Variables t or f are based on time or frequency measurements.
+
+Body = related to body movement.
+
+Gravity = acceleration of gravity
+
+Acc = accelerometer measurement
+
+Gyro = gyroscopic measurements
+
+Jerk = sudden movement acceleration
+
+Mag = magnitude of movement
+
+mean and SD are calculated for each subject for each activity for each mean and SD measurements. 
+
+The units given are g’s for the accelerometer and rad/sec for the gyro and g/sec and rad/sec/sec for the corresponding jerks.
+
+###4.1 Assign the appropiated labels names
+
+names(DataFrame)<-gsub("std()", "SD", names(DataFrame))
+
+names(DataFrame)<-gsub("mean()", "MEAN", names(DataFrame))
+
+names(DataFrame)<-gsub("^t", "time", names(DataFrame))
+
+names(DataFrame)<-gsub("^f", "frequency", names(DataFrame))
+
+names(DataFrame)<-gsub("Acc", "Accelerometer", names(DataFrame))
+
+names(DataFrame)<-gsub("Gyro", "Gyroscope", names(DataFrame))
+
+names(DataFrame)<-gsub("Mag", "Magnitude", names(DataFrame))
+
+names(DataFrame)<-gsub("BodyBody", "Body", names(DataFrame))
+
+
+###4.2 Names after labels update
+
+names (DataFrame)
+
+head(str(DataFrame), 5)
+
+
+#5. FROM THE DATA SET IN STEP 4, CREATES A SECOND, INDEPENDENT TIDY DATA SET WITH THE AVERAGE OF EACH VARIABLE FOR EACH ACTIVITY AND EACH SUBJECT. 
+### 5.1 Write to text file on disk
+
+write.table(DataFrame, "TidyData.txt", row.name=FALSE)
+
+### 5.2 Explore the new tidy dataset we just created
+
+tidyfile <- read.csv("./TidyData.txt")
+
+head (str(tidyfile),5)
+
+
+#### End of Project
