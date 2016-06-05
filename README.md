@@ -85,6 +85,7 @@ datasetSubjectTest  <- read.table(file.path(path_dataset, "test" , "subject_test
 Now lets take a look at the data we loaded in order to identify the variables and structure of the dataset.
 
 Use head() to get a quick view of the data
+
 head(datasetActivityTest)
 
 head(datasetSubjectTrain)
@@ -98,7 +99,8 @@ head(datasetSubjectTest)
 head(datasetSubjectTrain)
 
 
-Use str() to explore the internal structure of the R objects we just readed
+Use str() to explore the internal structure of the R objects
+
 str(datasetActivityTest)
 
 str(datasetActivityTrain)
