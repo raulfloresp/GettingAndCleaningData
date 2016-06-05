@@ -2,7 +2,9 @@
 Getting and Cleaning Data Course Project
 
 The files listed in the data set are:
+
 activity_labels.txt
+
 features.txt 
 features_info.txt
 README.txt
